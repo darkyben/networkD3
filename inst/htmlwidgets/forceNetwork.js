@@ -80,6 +80,7 @@ HTMLWidgets.widget({
       .data(force.links())
       .enter().append("line")
       .attr("class", "link")
+      .attr("id",function(d){ return d.target.name+d.source.name;} )
       .style("stroke", options.linkColour)
       .style("opacity", options.opacity)
       .style("stroke-width", eval("(" + options.linkWidth + ")"))
@@ -97,10 +98,13 @@ HTMLWidgets.widget({
       .data(force.nodes())
       .enter().append("g")
       .attr("class", "node")
-      .style("fill", function(d) { return color(d.group); })
+      .attr("id",function(d){ return d.group;} )
+      .style("fill", function(d) { return color(d.group/d.group); })
       .style("opacity", options.opacity)
+      //.id("test")
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
+      .on("dblclick", dblclick)
       .call(force.drag);
 
     node.append("circle")
@@ -149,6 +153,22 @@ HTMLWidgets.widget({
         .attr("r", 8);
       d3.select(this).select("text").transition()
         .style("opacity", 0);
+    }
+
+        // double-click event handler
+    function dblclick() {
+      d3.select(this).select("circle").transition()
+        .duration(750)
+        .attr("r", 6)
+        .style("fill", "#E34A33");
+        d3.select(this).select("text").transition()
+        .duration(750)
+        .attr("x", 12)
+        .style("stroke", "none")
+        .style("fill", "#E34A33")
+        .style("stroke", "none")
+        .style("opacity", x.options.opacity)
+        .style("font", x.options.fontSize + "px serif");
     }
   },
 });
