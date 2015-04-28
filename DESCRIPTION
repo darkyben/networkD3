@@ -1,4 +1,4 @@
-Package: networkD3
+Package: networkD4
 Type: Package
 Title: Tools for Creating D3 JavaScript Network Graphs from R
 Description: Creates D3 JavaScript network, tree, dendrogram, and Sankey graphs
@@ -12,7 +12,7 @@ Authors@R: c(
     person("B.W.", "Lewis", role = "ctb"),
     person("Kevin", "Kuo", role = "ctb")
     )
-URL: http://github.com/christophergandrud/networkD3/
+URL: http://github.com/darkyben/networkD3/
 License: GPL (>= 3)
 Depends:
     R (>= 3.0.0)
